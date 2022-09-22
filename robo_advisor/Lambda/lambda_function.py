@@ -37,6 +37,9 @@ def validate_data(age, investment_amount, risk_level):
     
 #     * The `age` should be greater than zero and less than 65.
     if age is not None:
+        age = parse_int(
+            age
+        ) 
         if age >= 65 or age <= 0:
             return build_validation_result(
                 False,
@@ -200,17 +203,31 @@ def recommend_portfolio(intent_request):
         # Fetch current session attributes
         output_session_attributes = intent_request["sessionAttributes"]
 
-        # Once all slots are valid, a delegate dialog is returned to Lex to choose the next course of action.
+    # if risk_level == "None":
+    #     advice = '100% bonds (AGG), 0% equities (SPY)'
+    #     return delegate(output_session_attributes, get_slots(intent_request))
+    # if risk_level == "Low":
+    #     advice = '60% bonds (AGG), 40% equities (SPY)'
+    #     return delegate(output_session_attributes, get_slots(intent_request))
+    # if risk_level == "Medium":
+    #     advice = '40% bonds (AGG), 60% equities (SPY)'
+    #     return delegate(output_session_attributes, get_slots(intent_request))
+    # if risk_level == "High":
+    #     advice = '20% bonds (AGG), 80% equities (SPY)'
+    #     return delegate(output_session_attributes, get_slots(intent_request))
+    #     # ^^^ Once all slots are valid, a delegate dialog is returned to Lex to choose the next course of action.
+
+     # Once all slots are valid, a delegate dialog is returned to Lex to choose the next course of action.
         return delegate(output_session_attributes, get_slots(intent_request))
 
-    if risk_level = "None"
-        advice = 100% bonds (AGG), 0% equities (SPY)
-    if risk_level = "Low"
-        advice = 60% bonds (AGG), 40% equities (SPY)
-    if risk_level = "Medium"
-        advice = 40% bonds (AGG), 60% equities (SPY)
-    if risk_level = "High"
-        advice = 20% bonds (AGG), 80% equities (SPY)
+    if risk_level == "None":
+        advice = '100% bonds (AGG), 0% equities (SPY)'
+    if risk_level == "Low":
+        advice = '60% bonds (AGG), 40% equities (SPY)'
+    if risk_level == "Medium":
+        advice = '40% bonds (AGG), 60% equities (SPY)'
+    if risk_level == "High":
+        advice = '20% bonds (AGG), 80% equities (SPY)'
     
     
     # Return a message with conversion's result.
